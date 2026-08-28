@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+# lazygit config
+# Docs: https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+
+git:
+  diffRenderers:
+    # https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md#delta
+    - command: delta --dark --paging=never --side-by-side --max-line-length=0 --wrap-max-lines=unlimited
+    # Press | to cycle here: wraps long comma-joined values and diffs per-comma
+    - command: delta --dark --paging=never --side-by-side --max-line-length=0 --wrap-max-lines=unlimited --word-diff-regex='[^,]+'

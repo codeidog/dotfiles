@@ -1,0 +1,7 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[docker_context]
+disabled = true
+
+[kubernetes]
+disabled = false

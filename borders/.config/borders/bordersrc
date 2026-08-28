@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# JankyBorders config.
+#
+# These values used to live in an `after-startup-command` in .aerospace.toml,
+# but that line had a corrupted width argument (`width=10[µµµµ].0` — stray
+# characters from an editing accident), which borders rejected, so the width
+# silently fell back to the default. It also launched a *second* borders
+# instance alongside the one already managed by `brew services`.
+#
+# bordersrc is the supported config location: the brew-managed service reads it
+# on startup, so there's one instance and one source of truth.
+
+options=(
+  active_color=0xffBC13FE
+  inactive_color=0xff494d64
+  width=10.0
+)
+
+borders "${options[@]}"
