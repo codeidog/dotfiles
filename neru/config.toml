@@ -1,0 +1,152 @@
+# Neru config — only values that differ from the shipped defaults.
+# Full defaults kept for reference at ~/.config/neru/config.source.toml
+# Full config reference: https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md
+# Full CLI reference: https://github.com/y3owk1n/neru/blob/main/docs/CLI.md
+
+# Theme palette
+[theme.light]
+surface = "#2563EB"
+accent = "#DC2626"
+accent_alt = "#F59E0B"
+on_accent_alt = "#1A1200"
+text = "#FFFFFF"
+
+[theme.dark]
+surface = "#2563EB"
+accent = "#DC2626"
+accent_alt = "#F59E0B"
+on_accent_alt = "#1A1200"
+text = "#FFFFFF"
+
+# Hotkeys — merged on top of the 4 default mode bindings (hints/grid/recursive_grid/scroll)
+[hotkeys]
+"Primary+Shift+M" = "monitor_select"        # overlay: type a label to move cursor to that monitor
+"Primary+Alt+M" = "action move_monitor"     # one-shot: cycle cursor straight to the next monitor
+
+# Hint mode
+[hints]
+hint_characters = "tnseriaol"               # Characters used for hint labels
+
+# Grid mode
+[grid]
+characters = "ntesiroalpufyw;qhd,c.x/z"     # Primary grid labels
+sublayer_keys = "ntesiroalpufyw;qhd,c.x/z"  # Subgrid labels (fallback to characters)
+
+# Recursive grid mode — 5x5 grid (25 cells) with a next-level key preview inside each cell
+[recursive_grid]
+grid_cols = 3
+grid_rows = 3
+keys = "luyneih,."          # Cell selection keys (must be grid_cols * grid_rows chars)
+
+[recursive_grid.ui]
+sub_key_preview = true                      # Show the next level's keys inside each cell, for fast 2-key combos
+label_background = true                     # Actually draw the label chip (off by default — labels were rendering with no fill)
+text_color = "#FFFFFF"                      # Label text was defaulting to accent (red) — white reads cleanly on the blue chip
+highlight_color = "#4D2563EB"               # Currently-matching cell wash: translucent blue instead of the default translucent amber (was clashing with red lines)
+font_size = 16                              # Default is 10 — bigger main cell labels
+sub_key_preview_font_size = 12              # Default is 8 — scaled up to match
+
+# Virtual pointer (the dot marking your real cursor during --cursor-selection-mode hold)
+[virtual_pointer.ui]
+size = 10                                   # Default is 3px — nearly invisible; this makes it an actual visible marker
+
+# Monitor select mode
+[monitor_select]
+enabled = true                              # Enable interactive monitor picking mode
+
+# Scroll mode — merged on top of the shared default hotkeys (Escape/gg/Shift+G/etc.)
+[scroll.hotkeys]
+"i" = "action scroll_up"
+"e" = "action scroll_down"
+"n" = "action scroll_left"
+"o" = "action scroll_right"
+"Return" = "action left_click"
+"Shift+Return" = "action right_click"
+"Ctrl+Return" = "action left_click --modifier shift"
+"Cmd+Return" = "action mouse_down"
+"Alt+Return" = "action mouse_up"
+"Shift+L" = "__disabled__"
+"Shift+R" = "__disabled__"
+"Up" = "action move_mouse_relative --dx=0 --dy=-25"
+"Down" = "action move_mouse_relative --dx=0 --dy=25"
+"Left" = "action move_mouse_relative --dx=-25 --dy=0"
+"Right" = "action move_mouse_relative --dx=25 --dy=0"
+"Shift+Up" = "action move_mouse_relative --dx=0 --dy=-5"
+"Shift+Down" = "action move_mouse_relative --dx=0 --dy=5"
+"Shift+Left" = "action move_mouse_relative --dx=-5 --dy=0"
+"Shift+Right" = "action move_mouse_relative --dx=5 --dy=0"
+"Cmd+Up" = "action move_mouse_relative --dx=0 --dy=-150"
+"Cmd+Down" = "action move_mouse_relative --dx=0 --dy=150"
+"Cmd+Left" = "action move_mouse_relative --dx=-150 --dy=0"
+"Cmd+Right" = "action move_mouse_relative --dx=150 --dy=0"
+
+# Click + drag + arrow keys — same in every mode, merged on top of defaults.
+#   Return / Shift+Return / Ctrl+Return  = left / right / shift-click (extend selection)
+#   Cmd+Return / Alt+Return              = mouse_down / mouse_up — drag-select (method B):
+#     narrow to start → Cmd+Return, keep narrowing to end → Alt+Return. One continuous grid
+#     session (mouse_down/up don't exit the mode), so the grid never reopens and there's no
+#     center-jump flash. Button stays held between the two points → arrows micro-adjust live.
+#   Arrows: 5px (Shift) / 25px (plain) / 150px (Cmd) — fine / normal / coarse nudge.
+# Old Shift+L / Shift+R clicks disabled: they collided with hint chars under sticky modifiers.
+[hints.hotkeys]
+"Return" = "action left_click"
+"Shift+Return" = "action right_click"
+"Ctrl+Return" = "action left_click --modifier shift"
+"Cmd+Return" = "action mouse_down"
+"Alt+Return" = "action mouse_up"
+"Shift+L" = "__disabled__"
+"Shift+R" = "__disabled__"
+"Up" = "action move_mouse_relative --dx=0 --dy=-25"
+"Down" = "action move_mouse_relative --dx=0 --dy=25"
+"Left" = "action move_mouse_relative --dx=-25 --dy=0"
+"Right" = "action move_mouse_relative --dx=25 --dy=0"
+"Shift+Up" = "action move_mouse_relative --dx=0 --dy=-5"
+"Shift+Down" = "action move_mouse_relative --dx=0 --dy=5"
+"Shift+Left" = "action move_mouse_relative --dx=-5 --dy=0"
+"Shift+Right" = "action move_mouse_relative --dx=5 --dy=0"
+"Cmd+Up" = "action move_mouse_relative --dx=0 --dy=-150"
+"Cmd+Down" = "action move_mouse_relative --dx=0 --dy=150"
+"Cmd+Left" = "action move_mouse_relative --dx=-150 --dy=0"
+"Cmd+Right" = "action move_mouse_relative --dx=150 --dy=0"
+
+[grid.hotkeys]
+"Return" = "action left_click"
+"Shift+Return" = "action right_click"
+"Ctrl+Return" = "action left_click --modifier shift"
+"Cmd+Return" = "action mouse_down"
+"Alt+Return" = "action mouse_up"
+"Shift+L" = "__disabled__"
+"Shift+R" = "__disabled__"
+"Up" = "action move_mouse_relative --dx=0 --dy=-25"
+"Down" = "action move_mouse_relative --dx=0 --dy=25"
+"Left" = "action move_mouse_relative --dx=-25 --dy=0"
+"Right" = "action move_mouse_relative --dx=25 --dy=0"
+"Shift+Up" = "action move_mouse_relative --dx=0 --dy=-5"
+"Shift+Down" = "action move_mouse_relative --dx=0 --dy=5"
+"Shift+Left" = "action move_mouse_relative --dx=-5 --dy=0"
+"Shift+Right" = "action move_mouse_relative --dx=5 --dy=0"
+"Cmd+Up" = "action move_mouse_relative --dx=0 --dy=-150"
+"Cmd+Down" = "action move_mouse_relative --dx=0 --dy=150"
+"Cmd+Left" = "action move_mouse_relative --dx=-150 --dy=0"
+"Cmd+Right" = "action move_mouse_relative --dx=150 --dy=0"
+
+[recursive_grid.hotkeys]
+"Return" = "action left_click"
+"Shift+Return" = "action right_click"
+"Ctrl+Return" = "action left_click --modifier shift"
+"Cmd+Return" = "action mouse_down"
+"Alt+Return" = "action mouse_up"
+"Shift+L" = "__disabled__"
+"Shift+R" = "__disabled__"
+"Up" = "action move_mouse_relative --dx=0 --dy=-25"
+"Down" = "action move_mouse_relative --dx=0 --dy=25"
+"Left" = "action move_mouse_relative --dx=-25 --dy=0"
+"Right" = "action move_mouse_relative --dx=25 --dy=0"
+"Shift+Up" = "action move_mouse_relative --dx=0 --dy=-5"
+"Shift+Down" = "action move_mouse_relative --dx=0 --dy=5"
+"Shift+Left" = "action move_mouse_relative --dx=-5 --dy=0"
+"Shift+Right" = "action move_mouse_relative --dx=5 --dy=0"
+"Cmd+Up" = "action move_mouse_relative --dx=0 --dy=-150"
+"Cmd+Down" = "action move_mouse_relative --dx=0 --dy=150"
+"Cmd+Left" = "action move_mouse_relative --dx=-150 --dy=0"
+"Cmd+Right" = "action move_mouse_relative --dx=150 --dy=0"

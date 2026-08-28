@@ -1,0 +1,36 @@
+onboarding = false
+[ui]
+agent_panel_sort = "priority"
+
+show_agent_labels_on_pane_borders = true
+[theme]
+name = "rose-pine"
+auto_switch = false
+
+[ui.toast]
+delivery = "herdr"
+
+[keys]
+focus_pane_left = "prefix+n"
+focus_pane_down = "prefix+e"
+focus_pane_up = "prefix+u"
+focus_pane_right = "prefix+i"
+swap_pane_left = "prefix+ctrl+n"
+swap_pane_down = "prefix+ctrl+e"
+swap_pane_up = "prefix+ctrl+u"
+swap_pane_right = "prefix+ctrl+i"
+previous_tab = "prefix+f"
+next_tab = "prefix+p"
+edit_scrollback = "prefix+shift+e"
+
+[[keys.command]]
+key = "prefix+a"
+type = "plugin_action"
+command = "idoga.tasks.open"
+description = "task picker"
+
+[[keys.command]]
+key = "prefix+down"
+type = "shell"
+command = "\"${HERDR_BIN_PATH:-herdr}\" plugin pane open --plugin cloudmanic.herdr-plus --entrypoint quick-actions-picker --placement popup"
+description = "quick actions (popup)"

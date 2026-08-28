@@ -1,0 +1,12 @@
+background-blur-radius = 40
+mouse-hide-while-typing = true
+macos-option-as-alt = true
+background-opacity = 0.8
+theme = Rose Pine Moon
+
+shell-integration-features = no-cursor
+cursor-style = block
+cursor-style-blink = false
+custom-shader = shaders/space.glsl
+custom-shader = shaders/bloom-subtle.glsl
+custom-shader = shaders/cursor_blaze-neon-pulse.glsl
