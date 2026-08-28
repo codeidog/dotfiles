@@ -30,7 +30,7 @@ brew "kubectx"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
 # A window border system for macOS
-brew "FelixKratz/formulae/borders", trusted: true
+brew "FelixKratz/formulae/borders", trusted: true, start_service: true
 # Simple terminal UI for git commands
 brew "lazygit"
 # Ambitious Vim-fork focused on extensibility and agility
